@@ -4,11 +4,17 @@
             <img :src="character.image" alt="character.name">
             <h3>{{ character.name }}</h3>
             <ul class="list-style" >
-                <li>- {{ character.status }}</li>
-                <li>- {{ character.species }}</li>
-                <li>- {{ character.gender }}</li>
+                <li> Status: {{ character.status }}</li>
+                <li> Espécie: {{ character.species }}</li>
+                <li> Sexo: {{ character.gender }}</li>
+                <li> Origin: {{ character.origin.name }}</li>
             </ul>
-
+            
+            <div class="button-fav">
+                <span class="favorite-star" @click="toggleFavorite(character)" >
+                    ★
+                </span>
+            </div>
         </div>
     </div>
 </template>
@@ -21,7 +27,9 @@ export default {
 
     data() {
         return {
-            charactersData: []
+            charactersData: [],
+            character: []
+
         }
     },
     created() {
@@ -34,7 +42,7 @@ export default {
         },
         toggleFavorite(character) {
         this.$store.commit('toggleFavorite', character);
-    }
+        }
     }
 }
 
@@ -94,14 +102,29 @@ export default {
 
     .list-style {
         list-style: none;
+        padding: 0;
         text-align: left;
+        margin: 10px 0 0;
     }
 
-    .card-characters h3 {
-    position: relative;
-    color: #32cd32;
-    animation: glow-text 3s infinite;
+    .list-style li {
+        padding: 1px 0;
+        display: flex;
+        align-items: center;
 }
+
+    .list-style li::before {
+        content: '•'; 
+        color: #32cd32;
+        margin-right: 8px;
+}
+
+    .card-characters h3 {
+        position: relative;
+        color: #32cd32;
+        animation: glow-text 3s infinite;
+}
+
 
 @keyframes glow-text {
     0% {
@@ -114,5 +137,20 @@ export default {
         text-shadow: 0 0 5px lime, 0 0 10px lime, 0 0 15px lime;
     }
 }
+
+.favorite-star {
+    position: absolute;
+    top: 1px;
+    right: 10px; 
+    color: gold; 
+    font-size: 2em;
+    cursor: pointer; 
+    transition: color 0.2s; 
+}
+
+.favorite-star:hover {
+    color: orange;
+}
     
+
 </style>
