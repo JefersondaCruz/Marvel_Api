@@ -7,4 +7,8 @@ const HttpService = axios.create({
   },
 });
 
+export const ShowCharacters = () => {
+  return axios.get('https://rickandmortyapi.com/api/character')
+};
+
 export default HttpService;
