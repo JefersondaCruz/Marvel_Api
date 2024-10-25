@@ -5,7 +5,7 @@
         <div class="wrapper">
                 <nav class="btn-style" >
                     <RouterLink to="/" class="nav-button">Characters</RouterLink>
-                    <RouterLink to="/Favorite" class="nav-button" > Favorites</RouterLink>
+                    <RouterLink to="/Favorites" class="nav-button" > Favorites</RouterLink>
                 </nav>
         </div>
 </div>

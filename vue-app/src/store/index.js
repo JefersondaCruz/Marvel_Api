@@ -3,7 +3,7 @@ import { createStore } from "vuex";
 export default createStore({
   state: {
     selectedCharacters: [],
-    favoritedCharacters: JSON.parse(localStorage.getItem('favoritedCharacters'))
+    favoritedCharacters: JSON.parse(localStorage.getItem('favoritedCharacters')) || []
   },
   getters: {
     getSelectedCharacters(state) {
@@ -20,9 +20,21 @@ export default createStore({
     toggleFavorite(state, character) {
       state.favoritedCharacters.push(character); 
       localStorage.setItem('favoritedCharacters', JSON.stringify(state.favoritedCharacters));
+    },
+
+    deleteFavorited(state, characterId){
+      const index = state.favoritedCharacters.findIndex(character => character.id === characterId);
+      if (index !== -1) {
+        state.favoritedCharacters.splice(index, 1);
+        localStorage.setItem('favoritedCharacters', JSON.stringify(state.favoritedCharacters));
+      }
     }
 
   },
-  actions: {},
+  actions: {
+    removeFavorited({ commit }, characterId) {
+      commit('deleteFavorited', characterId);
+    }
+  },
   modules: {},
 });

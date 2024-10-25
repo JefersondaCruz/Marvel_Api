@@ -1,4 +1,6 @@
 <template>
+<div>
+    <Message :msg="msg" v-show="msg" />
     <div class="characters-container">
         <div class="card-characters" v-for="character in charactersData" :key="character.id">
             <img :src="character.image" alt="character.name">
@@ -17,10 +19,12 @@
             </div>
         </div>
     </div>
+</div>
 </template>
     
 <script>
 import { ShowCharacters } from '@/services/HttpService';
+import Message from './Message.vue';
 
 export default {
     name: 'Characters',
@@ -28,7 +32,9 @@ export default {
     data() {
         return {
             charactersData: [],
-            character: []
+            character: [],
+            selectedCharacters: [],
+            msg: null
 
         }
     },
@@ -41,9 +47,17 @@ export default {
             this.charactersData = res.data.results;
         },
         toggleFavorite(character) {
-        this.$store.commit('toggleFavorite', character);
+            this.$store.commit('toggleFavorite', character);
+
+            this.msg = 'Favoritado com sucesso';
+            setTimeout(() => {
+            this.msg = null;
+            }, 3000);
         }
-    }
+    },
+    components: {
+        Message,
+    },
 }
 
 </script>
@@ -69,6 +83,7 @@ export default {
         text-align: center;
         border-radius: 2px;
         color: #32cd32;
+        position: relative;
     }
 
     .card-characters:hover {
@@ -142,14 +157,14 @@ export default {
     position: absolute;
     top: 1px;
     right: 10px; 
-    color: gold; 
+    color: #32cd32; 
     font-size: 2em;
     cursor: pointer; 
     transition: color 0.2s; 
 }
 
 .favorite-star:hover {
-    color: orange;
+    color: #0a730a;
 }
     
 

@@ -13,7 +13,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/',
+      path: '/favorites',
       name: 'Favorites',
       component: () => import('../views/FavoritesView.vue'),
       meta: {
