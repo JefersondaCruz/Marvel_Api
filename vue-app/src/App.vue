@@ -7,7 +7,7 @@ import NavBarVue from './components/NavBar.vue';
 
 <template>
 
-<div>
+<div class="app-container" >
   <header>
     <NavBarVue />
   </header>
@@ -15,6 +15,7 @@ import NavBarVue from './components/NavBar.vue';
   <main>
     <RouterView />
   </main>
+  
   <footer>
     <Footer />
   </footer>
@@ -41,19 +42,41 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
+.app-container {
+  flex: 1; 
+  display: flex;
+  flex-direction: column;
+}
 
 main {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex: 1;
   width: 100%;
+  min-height: calc(100vh - 180px - 100px);
 
   
 }
+
+footer {
+  height: 180px; 
+  background-color: #000000;
+  border-top: 4px solid #111;
+  color: #32cd32;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 
 
 
