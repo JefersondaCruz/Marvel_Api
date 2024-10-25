@@ -43,7 +43,7 @@ export default {
         removeCharacter(characterId) {
             this.removeFavorited(characterId);
 
-            this.msg = 'Removido com sucesso';
+            this.msg = 'Removido com sucesso!!!';
             setTimeout(() => {
             this.msg = null;
             }, 3000);

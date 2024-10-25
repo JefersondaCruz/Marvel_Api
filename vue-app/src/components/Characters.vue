@@ -49,7 +49,7 @@ export default {
         toggleFavorite(character) {
             this.$store.commit('toggleFavorite', character);
 
-            this.msg = 'Favoritado com sucesso';
+            this.msg = 'Favoritado com sucesso!!!';
             setTimeout(() => {
             this.msg = null;
             }, 3000);
@@ -157,7 +157,7 @@ export default {
     position: absolute;
     top: 1px;
     right: 10px; 
-    color: #32cd32; 
+    color: #8C4303; 
     font-size: 2em;
     cursor: pointer; 
     transition: color 0.2s; 
@@ -166,6 +166,7 @@ export default {
 .favorite-star:hover {
     color: #0a730a;
 }
-    
+
+
 
 </style>
