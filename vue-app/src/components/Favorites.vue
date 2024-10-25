@@ -1,5 +1,6 @@
 <template>
-
+<div>
+    <Message :msg="msg" v-show="msg" />
     <div class="characters-container">
         <div class="card-characters" v-for="character in getFavoritedCharacters" :key="character.id">
             <img :src="character.image" alt="character.name">
@@ -18,14 +19,22 @@
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <script>
+import Message from './Message.vue';
 import { mapGetters } from 'vuex';
 import { mapActions } from 'vuex'
 
 export default {
     name: "Favorites",
+    data() {
+        return {
+            msg: null
+        }
+    },
+    
     computed: {
         ...mapGetters(["getFavoritedCharacters"])
     },
@@ -33,8 +42,16 @@ export default {
         ...mapActions(['removeFavorited']),
         removeCharacter(characterId) {
             this.removeFavorited(characterId);
+
+            this.msg = 'Removido com sucesso';
+            setTimeout(() => {
+            this.msg = null;
+            }, 3000);
         }
-    }
+    },
+    components: {
+        Message,
+    },
 }
 </script>
 
